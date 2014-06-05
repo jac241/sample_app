@@ -1568,3 +1568,74 @@ Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-06-03 18:05:51 -0400
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-03 18:05:51 -0400
+  [1m[36m (3.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (2.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140604205700)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140604205700"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Wed, 04 Jun 2014 21:02:17 UTC +00:00], ["email", "jac241@pitt.edu"], ["name", "James Castiglione"], ["updated_at", Wed, 04 Jun 2014 21:02:17 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Wed, 04 Jun 2014 21:04:17 UTC +00:00], ["email", "foo@bar.com"], ["name", "Foo"], ["updated_at", Wed, 04 Jun 2014 21:04:17 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'jac241@pitt.edu' LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'jac241@pitt.edu' LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (2.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (2.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140604205700')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Wed, 04 Jun 2014 21:44:42 UTC +00:00], ["email", "user@example.com"], ["name", "Example User"], ["updated_at", Wed, 04 Jun 2014 21:44:42 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddIndexToUsersEmail (20140605183104)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140605183104"]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddPasswordDigestToUsers (20140605183825)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "password_digest" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140605183825"]]
+  [1m[36m (3.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime, "password_digest" varchar(255)) [0m
+  [1m[35m (2.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (2.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (2.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140605183825')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140605183104')[0m
+  [1m[35m (2.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140604205700')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('mhartl@example.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (2.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Thu, 05 Jun 2014 18:57:18 UTC +00:00], ["email", "mhartl@example.com"], ["name", "Michael Hartl"], ["password_digest", "$2a$10$nsyHOx4YJKKwwNL26MUosO5rkhrsPcOqxvd.Jf7Aj3JokZG7Wop2W"], ["updated_at", Thu, 05 Jun 2014 18:57:18 UTC +00:00]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'mhartl@example.com' LIMIT 1[0m
